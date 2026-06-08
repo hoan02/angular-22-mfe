@@ -1,0 +1,40 @@
+<div class="mfe-container">
+  <header>
+    <h2>📦 MFE1 Remote Application</h2>
+    <p>This micro frontend is loaded via Native Federation v4.1</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <h3>Welcome to Micro Frontend 3!</h3>
+      <p>
+        This component is exposed by the <strong>mfe1</strong> remote application
+        and loaded by the <strong>Host</strong> shell using the Orchestrator.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Tech Stack</h3>
+      <ul>
+        <li><strong>Framework:</strong> Angular {{ title() }}</li>
+        <li><strong>Federation:</strong> Native Federation v4.1</li>
+        <li><strong>Orchestrator:</strong> @softarc/native-federation-orchestrator</li>
+        <li><strong>Module System:</strong> ESM (import maps)</li>
+        <li><strong>Builder:</strong> @angular-architects/native-federation:build</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Configuration Highlights</h3>
+      <ul>
+        <li><code>denseChunking</code> — smaller remoteEntry.json metadata</li>
+        <li><code>cacheExternalArtifacts</code> — cached shared libs (RxJS, etc.)</li>
+        <li><code>rebuildDelay</code> — 500ms debounce for dev rebuilds</li>
+        <li><code>Shim Import Map</code> — cross-browser compatibility</li>
+        <li><code>includeSecondaries: keepAll</code> — all @angular/core entry points</li>
+      </ul>
+    </div>
+  </main>
+
+  <router-outlet />
+</div>
