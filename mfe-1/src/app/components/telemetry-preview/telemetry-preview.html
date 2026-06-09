@@ -1,0 +1,47 @@
+<div hlmCard class="p-6 border-2 border-slate-800 shadow-2xl space-y-6 font-sans">
+  
+  <!-- Header Title -->
+  <div class="flex items-center justify-between border-b border-slate-800/60 pb-4">
+    <h3 hlmCardTitle class="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400 flex items-center gap-2">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      Dữ liệu Signal
+    </h3>
+    <span class="text-[9px] text-slate-500 font-mono">LIVE FEED</span>
+  </div>
+
+  <!-- Statistics List -->
+  <div hlmCardContent class="space-y-4 text-xs font-mono p-0">
+    <div class="flex justify-between items-center py-2 border-b border-slate-800/40">
+      <span class="text-slate-450">Trạng thái Form</span>
+      <span hlmBadge [variant]="service.spaceForm().valid() ? 'default' : 'destructive'" class="font-bold">
+        {{ service.spaceForm().valid() ? 'HỢP LỆ' : 'LỖI' }}
+      </span>
+    </div>
+    <div class="flex justify-between items-center py-2 border-b border-slate-800/40">
+      <span class="text-slate-450">Cờ chỉnh sửa (Dirty)</span>
+      <span class="text-slate-200 font-bold">{{ service.spaceForm().dirty() ? 'TRUE' : 'FALSE' }}</span>
+    </div>
+    <div class="flex justify-between items-center py-2 border-b border-slate-800/40">
+      <span class="text-slate-450">Đã chạm (Touched)</span>
+      <span class="text-slate-200 font-bold">{{ service.spaceForm().touched() ? 'TRUE' : 'FALSE' }}</span>
+    </div>
+    <div class="flex justify-between items-center py-2">
+      <span class="text-slate-450">Số người đi cùng</span>
+      <span class="text-slate-200 font-bold">{{ service.spaceForm.companions.length }}</span>
+    </div>
+  </div>
+
+  <!-- Live JSON Payload -->
+  <div class="space-y-2 pt-2">
+    <label class="block text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">Dữ liệu Payload thời gian thực</label>
+    <div class="bg-[#020617] p-4 rounded-xl border-2 border-slate-900 font-mono text-[10px] text-emerald-400 overflow-auto max-h-80 shadow-inner">
+      <pre class="leading-relaxed">{{ service.model() | json }}</pre>
+    </div>
+  </div>
+  
+</div>
+
+

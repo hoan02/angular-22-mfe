@@ -1,19 +1,77 @@
-<div class="home">
-  <h1>Angular 22 Micro Frontend Demo</h1>
-  <p>Welcome to the Host application!</p>
-
-  <div class="nav-links">
-    <a routerLink="/home">Home</a>
-    <a routerLink="/mfe1">Load MFE1</a>
+<div class="max-w-4xl mx-auto space-y-8 animate-fade-in">
+  
+  <!-- Hero Section -->
+  <div hlmCard class="text-center py-16 px-6 shadow-2xl relative overflow-hidden border-2 border-slate-800 hover:border-slate-700 transition-all duration-300">
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 pointer-events-none"></div>
+    <span class="px-3 py-1 rounded-md text-[10px] font-mono font-bold tracking-widest uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+      ANGULAR V22 CORE DEMO
+    </span>
+    <h2 hlmCardTitle class="text-3xl sm:text-4xl font-bold tracking-tight mt-5 bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent font-sans">
+      Kiến trúc Micro-Frontend Hiện đại
+    </h2>
+    <p hlmCardDescription class="mt-4 text-sm text-slate-400 max-w-xl mx-auto leading-relaxed font-sans">
+      Hệ thống tải phân mảnh ứng dụng từ xa (Remote MFE) kết hợp tính năng lập trình phản ứng (Reactivity) mạnh mẽ từ Angular v22 và Tailwind CSS v4.
+    </p>
+    <div hlmCardContent class="mt-8 flex justify-center p-0">
+      <a routerLink="/mfe1" hlmBtn class="px-6 py-3 text-xs font-mono font-bold text-slate-950 shadow-lg shadow-emerald-500/20 transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2">
+        Trải nghiệm Demo MFE-1
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
   </div>
 
-  <div class="info">
-    <h2>Architecture</h2>
-    <ul>
-      <li><strong>Host (Shell):</strong> Angular 22 + Native Federation v4.1</li>
-      <li><strong>Remote (MFE1):</strong> Angular 22 + Native Federation v4.1</li>
-      <li><strong>Orchestrator:</strong> @softarc/native-federation-orchestrator</li>
-      <li><strong>Module System:</strong> ESM</li>
-    </ul>
+  <!-- Tech Highlights Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div hlmCard class="p-6 shadow-xl space-y-4 border-2 border-slate-800/80 hover:border-slate-700 transition-all duration-200">
+      <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-sm shadow-inner border border-emerald-500/20">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+      </div>
+      <h3 hlmCardTitle class="text-base font-bold text-slate-200">Native Federation</h3>
+      <p hlmCardDescription class="text-xs text-slate-400 leading-relaxed font-sans">
+        Sử dụng ESM (Import Maps) gốc của trình duyệt để chia sẻ các thư viện cốt lõi (Angular, RxJS...) và nạp module động từ xa mà không cần biên dịch lại mã nguồn Host.
+      </p>
+    </div>
+
+    <div hlmCard class="p-6 shadow-xl space-y-4 border-2 border-slate-800/80 hover:border-slate-700 transition-all duration-200">
+      <div class="w-9 h-9 rounded-lg bg-teal-500/10 text-teal-400 flex items-center justify-center font-bold text-sm shadow-inner border border-teal-500/20">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      </div>
+      <h3 hlmCardTitle class="text-base font-bold text-slate-200">Angular Signals Forms</h3>
+      <p hlmCardDescription class="text-xs text-slate-400 leading-relaxed font-sans">
+        Tận dụng mô hình quản lý Form kiểu mới của Angular v22. Thay thế toàn bộ Reactive Forms truyền thống bằng cơ chế Signal Forms tối giản, an toàn kiểu dữ liệu.
+      </p>
+    </div>
   </div>
+
+  <!-- System Specifications -->
+  <div hlmCard class="p-6 border-2 border-slate-900 shadow-inner space-y-4">
+    <h3 hlmCardTitle class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">Thông số kỹ thuật hệ thống</h3>
+    <div hlmCardContent class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs font-mono p-0">
+      <div>
+        <p class="text-slate-500">Động cơ Host</p>
+        <p class="font-semibold text-slate-350 mt-1">Angular v22</p>
+      </div>
+      <div>
+        <p class="text-slate-500">Bộ công cụ</p>
+        <p class="font-semibold text-slate-350 mt-1">Federation v4.1</p>
+      </div>
+      <div>
+        <p class="text-slate-500">Giao diện</p>
+        <p class="font-semibold text-slate-350 mt-1">Tailwind v4.0</p>
+      </div>
+      <div>
+        <p class="text-slate-500">Tệp cấu hình</p>
+        <p class="font-semibold text-slate-350 mt-1">Import Maps ESM</p>
+      </div>
+    </div>
+  </div>
+  
 </div>
+

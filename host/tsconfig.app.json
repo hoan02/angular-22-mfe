@@ -7,7 +7,14 @@
     "types": []
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "./shared-ui/button/src/index.ts",
+    "./shared-ui/input/src/index.ts",
+    "./shared-ui/label/src/index.ts",
+    "./shared-ui/card/src/index.ts",
+    "./shared-ui/switch/src/index.ts",
+    "./shared-ui/utils/src/index.ts",
+    "./shared-ui/badge/src/index.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts"

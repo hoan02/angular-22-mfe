@@ -1,3 +1,4 @@
+(globalThis as any).ngDevMode = (globalThis as any).ngDevMode || {};
 import { initFederation } from '@softarc/native-federation-orchestrator';
 import type { LoadRemoteModule } from '@softarc/native-federation-orchestrator';
 import {

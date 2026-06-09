@@ -1,0 +1,293 @@
+<form (submit)="service.transmitPayload(); $event.preventDefault()" class="space-y-6">
+  
+  <!-- Section 1: Thông tin Cá nhân -->
+  <div hlmCard class="p-6 sm:p-8 border-2 border-slate-800 shadow-xl space-y-6 hover:border-slate-700 transition-all duration-300">
+    <div class="flex items-center gap-3 border-b border-slate-800/80 pb-4">
+      <div class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-mono font-bold text-xs border border-emerald-500/20">
+        01
+      </div>
+      <h3 hlmCardTitle class="text-xs font-mono font-bold uppercase tracking-wider text-slate-350">Thông tin Cá nhân</h3>
+    </div>
+    
+    <div hlmCardContent class="grid grid-cols-1 md:grid-cols-2 gap-6 p-0">
+      <!-- Họ và tên -->
+      <div class="space-y-2">
+        <label hlmLabel class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Họ và tên</label>
+        <input hlmInput [formField]="service.spaceForm.personalInfo.fullName"
+               placeholder="Nguyễn Văn A"
+               class="w-full focus-visible:ring-emerald-550/20" />
+        @if (service.spaceForm.personalInfo.fullName().touched() && service.spaceForm.personalInfo.fullName().errors().length) {
+          <p class="text-xs text-rose-400 flex items-center gap-1.5 font-medium mt-1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="width: 14px; height: 14px; flex-shrink: 0;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            {{ service.spaceForm.personalInfo.fullName().errors()[0].message }}
+          </p>
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="space-y-2">
+        <label hlmLabel class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Địa chỉ Email</label>
+        <input hlmInput type="email" [formField]="service.spaceForm.personalInfo.email"
+               placeholder="nguyenvana@galaxy.com"
+               class="w-full focus-visible:ring-emerald-550/20" />
+        @if (service.spaceForm.personalInfo.email().touched() && service.spaceForm.personalInfo.email().errors().length) {
+          <p class="text-xs text-rose-400 flex items-center gap-1.5 font-medium mt-1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="width: 14px; height: 14px; flex-shrink: 0;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            {{ service.spaceForm.personalInfo.email().errors()[0].message }}
+          </p>
+        }
+      </div>
+
+      <!-- Tuổi -->
+      <div class="space-y-2 md:col-span-2">
+        <label hlmLabel class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Tuổi (Năm)</label>
+        <input hlmInput type="number" [formField]="service.spaceForm.personalInfo.age"
+               class="w-full focus-visible:ring-emerald-550/20" />
+        @if (service.spaceForm.personalInfo.age().touched() && service.spaceForm.personalInfo.age().errors().length) {
+          <p class="text-xs text-rose-400 flex items-center gap-1.5 font-medium mt-1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="width: 14px; height: 14px; flex-shrink: 0;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            {{ service.spaceForm.personalInfo.age().errors()[0].message }}
+          </p>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Thông số Nhiệm vụ -->
+  <div hlmCard class="p-6 sm:p-8 border-2 border-slate-800 shadow-xl space-y-6 hover:border-slate-700 transition-all duration-300">
+    <div class="flex items-center gap-3 border-b border-slate-800/80 pb-4">
+      <div class="w-7 h-7 rounded-lg bg-teal-500/10 text-teal-400 flex items-center justify-center font-mono font-bold text-xs border border-teal-500/20">
+        02
+      </div>
+      <h3 hlmCardTitle class="text-xs font-mono font-bold uppercase tracking-wider text-slate-350">Thông số Nhiệm vụ</h3>
+    </div>
+
+    <div hlmCardContent class="grid grid-cols-1 md:grid-cols-2 gap-6 p-0">
+      
+      <!-- Điểm đến -->
+      <div class="space-y-2 relative">
+        <label hlmLabel class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Địa điểm đến</label>
+        
+        <div ngCombobox #destSelect="ngCombobox"
+             [formField]="service.spaceForm.missionDetails.destination"
+             [(expanded)]="destinationExpanded"
+             class="w-full bg-slate-950 hover:bg-slate-950 border border-slate-900 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 hover:border-slate-800 transition-all duration-200 cursor-pointer flex items-center justify-between shadow-inner"
+             id="destination-select"
+             role="combobox"
+             tabindex="0">
+          <span class="select-text">
+            {{ getDestinationLabel(service.spaceForm.missionDetails.destination().value()) }}
+          </span>
+          <svg class="text-slate-500 transition-transform duration-200" [class.rotate-180]="destinationExpanded()" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="16" height="16" style="width: 16px; height: 16px; flex-shrink: 0;">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+
+        <ng-template ngComboboxPopup [combobox]="destSelect">
+          <ul ngComboboxWidget
+              ngListbox
+              #destListbox="ngListbox"
+              [(value)]="destinationValueArray"
+              [activeDescendant]="destListbox.activeDescendant()"
+              class="w-full bg-[#020617] border border-slate-800 rounded-xl py-1.5 shadow-2xl z-50 focus:outline-none focus:border-emerald-500/50 mt-1"
+              (click)="destinationExpanded.set(false)">
+            <li ngOption value="Mars Base Alpha" class="px-4 py-2.5 text-xs text-slate-300 hover:bg-emerald-500/15 hover:text-emerald-450 cursor-pointer aria-selected:bg-emerald-500/20 aria-selected:text-emerald-300 transition-all">
+              Căn cứ Sao Hỏa Alpha
+            </li>
+            <li ngOption value="Europa Sub-surface" class="px-4 py-2.5 text-xs text-slate-300 hover:bg-emerald-500/15 hover:text-emerald-450 cursor-pointer aria-selected:bg-emerald-500/20 aria-selected:text-emerald-300 transition-all">
+              Đại dương ngầm Europa
+            </li>
+            <li ngOption value="Titan Station" class="px-4 py-2.5 text-xs text-slate-300 hover:bg-emerald-500/15 hover:text-emerald-450 cursor-pointer aria-selected:bg-emerald-500/20 aria-selected:text-emerald-300 transition-all">
+              Trạm vũ trụ Titan
+            </li>
+          </ul>
+        </ng-template>
+      </div>
+
+      <!-- Vị trí chuyên môn -->
+      <div class="space-y-2 relative">
+        <label hlmLabel class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Vị trí chuyên môn</label>
+        
+        <div ngCombobox #roleSelect="ngCombobox"
+             [formField]="service.spaceForm.missionDetails.role"
+             [(expanded)]="roleExpanded"
+             class="w-full bg-slate-950 hover:bg-slate-950 border border-slate-900 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 hover:border-slate-800 transition-all duration-200 cursor-pointer flex items-center justify-between shadow-inner"
+             id="role-select"
+             role="combobox"
+             tabindex="0">
+          <span class="select-text">
+            {{ getRoleLabel(service.spaceForm.missionDetails.role().value()) }}
+          </span>
+          <svg class="text-slate-500 transition-transform duration-200" [class.rotate-180]="roleExpanded()" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="16" height="16" style="width: 16px; height: 16px; flex-shrink: 0;">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+
+        <ng-template ngComboboxPopup [combobox]="roleSelect">
+          <ul ngComboboxWidget
+              ngListbox
+              #roleListbox="ngListbox"
+              [(value)]="roleValueArray"
+              [activeDescendant]="roleListbox.activeDescendant()"
+              class="w-full bg-[#020617] border border-slate-800 rounded-xl py-1.5 shadow-2xl z-50 focus:outline-none focus:border-emerald-500/50 mt-1"
+              (click)="roleExpanded.set(false)">
+            <li ngOption value="Engineer" class="px-4 py-2.5 text-xs text-slate-300 hover:bg-emerald-500/15 hover:text-emerald-450 cursor-pointer aria-selected:bg-emerald-500/20 aria-selected:text-emerald-300 transition-all">
+              Kỹ sư
+            </li>
+            <li ngOption value="Scientist" class="px-4 py-2.5 text-xs text-slate-300 hover:bg-emerald-500/15 hover:text-emerald-450 cursor-pointer aria-selected:bg-emerald-500/20 aria-selected:text-emerald-300 transition-all">
+              Nhà khoa học
+            </li>
+            <li ngOption value="Pilot" class="px-4 py-2.5 text-xs text-slate-300 hover:bg-emerald-500/15 hover:text-emerald-450 cursor-pointer aria-selected:bg-emerald-500/20 aria-selected:text-emerald-300 transition-all">
+              Phi công
+            </li>
+            <li ngOption value="Medical" class="px-4 py-2.5 text-xs text-slate-300 hover:bg-emerald-500/15 hover:text-emerald-450 cursor-pointer aria-selected:bg-emerald-500/20 aria-selected:text-emerald-300 transition-all">
+              Sĩ quan Y tế
+            </li>
+          </ul>
+        </ng-template>
+      </div>
+
+      <!-- Kinh nghiệm bay ngoài vũ trụ -->
+      <div class="md:col-span-2 pt-2">
+        <label for="hasExperience" class="flex items-center justify-between p-4 rounded-xl bg-slate-950 border-2 border-slate-900 hover:border-slate-850 transition-all cursor-pointer shadow-inner">
+          <div class="space-y-1 pr-4">
+            <span hlmLabel class="text-sm font-semibold text-slate-200">Kinh nghiệm bay ngoài vũ trụ</span>
+            <p class="text-xs text-slate-450">Bạn đã từng tham gia nhiệm vụ ngoài quỹ đạo Trái Đất?</p>
+          </div>
+          <hlm-switch id="hasExperience" [formField]="service.spaceForm.missionDetails.hasExperience"></hlm-switch>
+        </label>
+      </div>
+
+      <!-- Thời gian tích lũy -->
+      @if (!service.spaceForm.missionDetails.yearsOfExperience().disabled()) {
+        <div class="md:col-span-2 space-y-2 animate-fade-in">
+          <label hlmLabel class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Thời gian tích lũy (Năm)</label>
+          <input hlmInput type="number" [formField]="service.spaceForm.missionDetails.yearsOfExperience"
+                 class="w-full focus-visible:ring-emerald-550/20" />
+          @if (service.spaceForm.missionDetails.yearsOfExperience().touched() && service.spaceForm.missionDetails.yearsOfExperience().errors().length) {
+            <p class="text-xs text-rose-400 flex items-center gap-1.5 font-medium mt-1.5">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="width: 14px; height: 14px; flex-shrink: 0;">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              {{ service.spaceForm.missionDetails.yearsOfExperience().errors()[0].message }}
+            </p>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Section 3: Người đồng hành -->
+  <div hlmCard class="p-6 sm:p-8 border-2 border-slate-800 shadow-xl space-y-6 hover:border-slate-700 transition-all duration-300">
+    <div class="flex items-center justify-between border-b border-slate-800/80 pb-4">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-mono font-bold text-xs border border-emerald-500/20">
+          03
+        </div>
+        <h3 hlmCardTitle class="text-xs font-mono font-bold uppercase tracking-wider text-slate-350">Người đồng hành</h3>
+      </div>
+      
+      <button hlmBtn variant="outline" type="button" (click)="service.addCompanion()" 
+              class="text-xs font-mono font-bold transition-all duration-200 cursor-pointer flex items-center gap-1 text-emerald-400 hover:text-emerald-350 shadow-md">
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="12" height="12" style="width: 12px; height: 12px; flex-shrink: 0;">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        Thêm người đồng hành
+      </button>
+    </div>
+
+    @if (service.spaceForm.companions.length === 0) {
+      <div class="py-12 text-center border-2 border-dashed border-slate-800/80 rounded-xl bg-slate-950 shadow-inner">
+        <svg class="text-slate-600 mx-auto opacity-40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="40" height="40" style="width: 40px; height: 40px;">
+          <path d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"></path>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="M20 12h2"></path>
+          <path d="M2 12h2"></path>
+        </svg>
+        <p class="text-xs text-slate-500 mt-3 font-medium">Bạn đang đăng ký đi một mình. Chưa có người đồng hành.</p>
+      </div>
+    } @else {
+      <div class="space-y-4">
+        @for (companion of service.spaceForm.companions; track $index) {
+          <div class="p-5 bg-slate-950 border-2 border-slate-900 rounded-xl hover:border-slate-855 transition-all duration-200 animate-fade-in shadow-inner relative">
+            <div class="flex flex-col sm:flex-row gap-5 items-stretch sm:items-end">
+              <!-- Tên -->
+              <div class="flex-grow space-y-2">
+                <label hlmLabel class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Họ tên người đồng hành</label>
+                <input hlmInput [formField]="companion.name" placeholder="Họ và tên"
+                       class="w-full focus-visible:ring-emerald-550/20" />
+                @if (companion.name().touched() && companion.name().errors().length) {
+                  <p class="text-xs text-rose-400 font-medium mt-1">
+                    ⚠️ {{ companion.name().errors()[0].message }}
+                  </p>
+                }
+              </div>
+              
+              <!-- Mối quan hệ -->
+              <div class="sm:w-1/3 space-y-2">
+                <label hlmLabel class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Mối quan hệ</label>
+                <div class="relative">
+                  <select [formField]="companion.relation"
+                          class="w-full bg-[#0f172a] border-2 border-slate-900 rounded-xl px-4 py-2.5 text-xs text-slate-150 focus:outline-none focus:border-emerald-500/50 transition-all appearance-none cursor-pointer">
+                    <option value="Family">Gia đình</option>
+                    <option value="Colleague">Đồng nghiệp</option>
+                    <option value="Friend">Bạn bè</option>
+                  </select>
+                  <div class="absolute inset-y-0 right-3.5 flex items-center pointer-events-none text-slate-500">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14" style="width: 14px; height: 14px; flex-shrink: 0;">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Remove Button -->
+              <div class="flex justify-end sm:justify-start pt-2 sm:pt-0">
+                <button hlmBtn variant="destructive" type="button" (click)="service.removeCompanion($index)"
+                        class="p-2.5 text-xs font-mono font-bold transition-all duration-200 cursor-pointer w-full sm:w-auto text-center flex items-center justify-center gap-1.5"
+                        title="Xóa người đồng hành">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14" style="width: 14px; height: 14px; flex-shrink: 0;">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                  Xóa
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Submit Button -->
+  <div class="flex justify-end pt-2">
+    <button hlmBtn type="submit" 
+            [disabled]="service.spaceForm().invalid() || service.spaceForm().pending() || service.isSubmitting()"
+            class="px-8 py-5 rounded-xl font-mono font-bold text-sm bg-emerald-500 hover:bg-emerald-600 disabled:opacity-30 disabled:pointer-events-none text-slate-950 shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/25 transition-all duration-200 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto">
+      @if (service.isSubmitting()) {
+        <span class="w-4 h-4 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" style="width: 16px; height: 16px; display: inline-block;"></span>
+        Đang gửi truyền tải dữ liệu...
+      } @else {
+        Gửi hồ sơ đăng ký &rarr;
+      }
+    </button>
+  </div>
+</form>
+

@@ -12,7 +12,18 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "ignoreDeprecations": "5.0",
+    "baseUrl": ".",
+    "paths": {
+      "@spartan-ng/helm/button": ["./shared-ui/button/src/index.ts"],
+      "@spartan-ng/helm/utils": ["./shared-ui/utils/src/index.ts"],
+      "@spartan-ng/helm/input": ["./shared-ui/input/src/index.ts"],
+      "@spartan-ng/helm/label": ["./shared-ui/label/src/index.ts"],
+      "@spartan-ng/helm/card": ["./shared-ui/card/src/index.ts"],
+      "@spartan-ng/helm/badge": ["./shared-ui/badge/src/index.ts"],
+      "@spartan-ng/helm/switch": ["./shared-ui/switch/src/index.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

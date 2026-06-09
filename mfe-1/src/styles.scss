@@ -1,1 +1,70 @@
-/* You can add global styles to this file, and also import other style files */
+@use "tailwindcss";
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@theme {
+--font-sans: "Be Vietnam Pro", sans-serif;
+--font-heading: "Plus Jakarta Sans", sans-serif;
+--font-mono: "Fira Code", monospace;
+
+--color-primary-base: #0f172a;
+--color-secondary-base: #1e293b;
+--color-accent-base: #22c55e;
+--color-muted-base: #1a1e2f;
+--color-border-base: #334155;
+}
+
+body {
+font-family: var(--font-sans);
+background-color: #020617;
+color: #f8fafc;
+}
+
+
+
+@import "@spartan-ng/brain/hlm-tailwind-preset.css";
+
+:root {
+  color-scheme: dark;
+  --radius: 0.75rem;
+  
+  --background: #020617;
+  --foreground: #f8fafc;
+  
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  
+  --popover: #020617;
+  --popover-foreground: #f8fafc;
+  
+  --primary: #22c55e;
+  --primary-foreground: #020617;
+  
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+  
+  --muted: #1a1e2f;
+  --muted-foreground: #94a3b8;
+  
+  --accent: #1e293b;
+  --accent-foreground: #22c55e;
+  
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  
+  --border: #334155;
+  --input: #020617;
+  --ring: #22c55e;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

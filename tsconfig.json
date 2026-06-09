@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@spartan-ng/helm/button": ["host/shared-ui/button/src/index.ts"],
+      "@spartan-ng/helm/utils": ["host/shared-ui/utils/src/index.ts"],
+      "@spartan-ng/helm/input": ["host/shared-ui/input/src/index.ts"],
+      "@spartan-ng/helm/label": ["host/shared-ui/label/src/index.ts"],
+      "@spartan-ng/helm/card": ["host/shared-ui/card/src/index.ts"],
+      "@spartan-ng/helm/badge": ["host/shared-ui/badge/src/index.ts"],
+      "@spartan-ng/helm/switch": ["host/shared-ui/switch/src/index.ts"]
+    }
+  }
+}

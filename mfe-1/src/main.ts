@@ -1,3 +1,4 @@
+(globalThis as any).ngDevMode = (globalThis as any).ngDevMode || {};
 import { initFederation } from '@angular-architects/native-federation';
 
 initFederation({ mfe1: './remoteEntry.json' })

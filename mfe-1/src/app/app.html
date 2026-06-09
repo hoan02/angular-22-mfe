@@ -1,40 +1,50 @@
-<div class="mfe-container">
-  <header>
-    <h2>📦 MFE1 Remote Application</h2>
-    <p>This micro frontend is loaded via Native Federation v4.1</p>
-  </header>
-
-  <main>
-    <div class="card">
-      <h3>Welcome to Micro Frontend 3!</h3>
-      <p>
-        This component is exposed by the <strong>mfe1</strong> remote application
-        and loaded by the <strong>Host</strong> shell using the Orchestrator.
-      </p>
+<div class="max-w-5xl mx-auto space-y-8 animate-fade-in text-slate-150 font-sans">
+  
+  <!-- Header with neon glowing badge -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/60 pb-6">
+    <div class="space-y-1">
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-0.5 rounded-md text-[9px] font-mono font-bold tracking-widest uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          MFE-1 REMOTE MODULE
+        </span>
+      </div>
+      <h2 class="text-3xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
+        Đăng ký Khai phá Vũ trụ
+      </h2>
+      <p class="text-xs text-slate-400 font-mono">Native Federation • Vận hành bởi Angular v22 Signals</p>
     </div>
-
-    <div class="card">
-      <h3>Tech Stack</h3>
-      <ul>
-        <li><strong>Framework:</strong> Angular {{ title() }}</li>
-        <li><strong>Federation:</strong> Native Federation v4.1</li>
-        <li><strong>Orchestrator:</strong> @softarc/native-federation-orchestrator</li>
-        <li><strong>Module System:</strong> ESM (import maps)</li>
-        <li><strong>Builder:</strong> @angular-architects/native-federation:build</li>
-      </ul>
+    
+    <!-- Status Badges -->
+    <div class="flex items-center gap-2 font-mono">
+      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-slate-900 border border-slate-800/80 shadow-inner">
+        <span [class]="'w-2 h-2 rounded-full ' + (service.spaceForm().valid() ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)]' : 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.7)]')"></span>
+        <span class="text-slate-300">Trạng thái: {{ service.spaceForm().valid() ? 'Hợp lệ' : 'Chưa đủ' }}</span>
+      </div>
+      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-slate-900 border border-slate-800/80 shadow-inner">
+        <span [class]="'w-2 h-2 rounded-full ' + (service.spaceForm().dirty() ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.7)]' : 'bg-slate-700')"></span>
+        <span class="text-slate-300">Dữ liệu: {{ service.spaceForm().dirty() ? 'Đã sửa' : 'Gốc' }}</span>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-      <h3>Configuration Highlights</h3>
-      <ul>
-        <li><code>denseChunking</code> — smaller remoteEntry.json metadata</li>
-        <li><code>cacheExternalArtifacts</code> — cached shared libs (RxJS, etc.)</li>
-        <li><code>rebuildDelay</code> — 500ms debounce for dev rebuilds</li>
-        <li><code>Shim Import Map</code> — cross-browser compatibility</li>
-        <li><code>includeSecondaries: keepAll</code> — all @angular/core entry points</li>
-      </ul>
+  @if (service.isSubmitted()) {
+    <!-- High-end Success Card Subcomponent -->
+    <app-success-card />
+  } @else {
+    <!-- Main Interactive Workspace -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Premium Form Column (8cols) -->
+      <div class="lg:col-span-8">
+        <app-enrollment-form />
+      </div>
+
+      <!-- Sidebar preview (4cols) -->
+      <div class="lg:col-span-4 lg:sticky lg:top-24">
+        <app-telemetry-preview />
+      </div>
+      
     </div>
-  </main>
-
-  <router-outlet />
+  }
 </div>
+
