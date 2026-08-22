@@ -1,5 +1,6 @@
 @use "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "@spartan-ng/brain/hlm-tailwind-preset.css";
 
 @theme {
   --font-sans: "Be Vietnam Pro", sans-serif;
@@ -18,8 +19,6 @@ body {
   background-color: #020617;
   color: #f8fafc;
 }
-
-@import "@spartan-ng/brain/hlm-tailwind-preset.css";
 
 :root {
   color-scheme: dark;

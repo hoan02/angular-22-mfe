@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@spartan-ng/helm/button": ["host/shared-ui/button/src/index.ts"],
@@ -8,7 +9,23 @@
       "@spartan-ng/helm/label": ["host/shared-ui/label/src/index.ts"],
       "@spartan-ng/helm/card": ["host/shared-ui/card/src/index.ts"],
       "@spartan-ng/helm/badge": ["host/shared-ui/badge/src/index.ts"],
-      "@spartan-ng/helm/switch": ["host/shared-ui/switch/src/index.ts"]
+      "@spartan-ng/helm/switch": ["host/shared-ui/switch/src/index.ts"],
+      "@spartan-ng/helm/alert": ["host/shared-ui/alert/src/index.ts"],
+      "@spartan-ng/helm/dialog": ["host/shared-ui/dialog/src/index.ts"],
+      "@spartan-ng/helm/alert-dialog": ["host/shared-ui/alert-dialog/src/index.ts"],
+      "@spartan-ng/helm/sonner": ["host/shared-ui/sonner/src/index.ts"],
+      "@spartan-ng/helm/tabs": ["host/shared-ui/tabs/src/index.ts"],
+      "@spartan-ng/helm/skeleton": ["host/shared-ui/skeleton/src/index.ts"],
+      "@spartan-ng/helm/separator": ["host/shared-ui/separator/src/index.ts"],
+      "@spartan-ng/helm/tooltip": ["host/shared-ui/tooltip/src/index.ts"],
+      "@spartan-ng/helm/avatar": ["host/shared-ui/avatar/src/index.ts"],
+      "@spartan-ng/helm/spinner": ["host/shared-ui/spinner/src/index.ts"],
+      "@spartan-ng/helm/checkbox": ["host/shared-ui/checkbox/src/index.ts"],
+      "@spartan-ng/helm/dropdown-menu": ["host/shared-ui/dropdown-menu/src/index.ts"],
+      "@spartan-ng/helm/popover": ["host/shared-ui/popover/src/index.ts"],
+      "@spartan-ng/helm/table": ["host/shared-ui/table/src/index.ts"],
+      "@spartan-ng/helm/progress": ["host/shared-ui/progress/src/index.ts"],
+      "@spartan-ng/helm/accordion": ["host/shared-ui/accordion/src/index.ts"]
     }
   }
 }

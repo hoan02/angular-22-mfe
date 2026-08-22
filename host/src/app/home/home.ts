@@ -5,8 +5,6 @@ import {
   HlmCard,
   HlmCardContent,
   HlmCardDescription,
-  HlmCardFooter,
-  HlmCardHeader,
   HlmCardTitle,
 } from '@spartan-ng/helm/card';
 
@@ -18,8 +16,6 @@ import {
     HlmCard,
     HlmCardContent,
     HlmCardDescription,
-    HlmCardFooter,
-    HlmCardHeader,
     HlmCardTitle,
   ],
   templateUrl: './home.html',

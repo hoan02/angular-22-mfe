@@ -6,13 +6,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "../host/shared-ui/button/src/index.ts",
-    "../host/shared-ui/input/src/index.ts",
-    "../host/shared-ui/label/src/index.ts",
-    "../host/shared-ui/card/src/index.ts",
-    "../host/shared-ui/switch/src/index.ts",
-    "../host/shared-ui/utils/src/index.ts",
-    "../host/shared-ui/badge/src/index.ts"
+    "../host/shared-ui/**/src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts"

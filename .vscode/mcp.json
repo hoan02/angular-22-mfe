@@ -7,6 +7,13 @@
                 "@angular/cli",
                 "mcp"
             ]
+        },
+        "spartan-ng": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "spartan-ng-mcp"
+            ]
         }
     }
 }
